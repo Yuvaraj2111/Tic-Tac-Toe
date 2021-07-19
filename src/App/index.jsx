@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react'
 import Algo from './algo'
 import Result from './result'
 import { Box } from './styled'
+import UserModal from './userModal'
 
 const App = () => {
     let initial = [[null, null, null], [null, null, null], [null, null, null]]
+    const [user, setUser] = useState({ 'p1': 'player 1', 'p2': 'player 2' })
     const [val, setVal] = useState(true)
     const [win, setWin] = useState("")
     const [mat, setMat] = useState(initial)
-    const [modalShow, setModalShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false)
+    const [userModalShow, setUserModalShow] = useState(true)
+
     useEffect(() => {
         async function algocall() {
             let res = await Algo(mat)
@@ -35,11 +39,11 @@ const App = () => {
         newMat[i][j] = val
         setMat(newMat)
         setVal(!val)
-
     }
 
     return (
         <>
+            <UserModal setShow={setUserModalShow} show={userModalShow} user={user} setUser={setUser} />
             <h1 className="text-center mt-5">Tic Tak Toe</h1>
             <div className="container justify-content-center mt-5 d-grid">
                 <div className="row mt-5">
@@ -60,10 +64,10 @@ const App = () => {
             </div>
             <div className="container text-center border border-2 mt-5">
                 {
-                    val ? <h4 className="text-success">Player 1 Turn</h4> : <h4 className="text-danger">Player 2 Turn</h4>
+                    val ? <h4 className="text-success">{user.p1} Turn</h4> : <h4 className="text-danger">{user.p2} Turn</h4>
                 }
             </div>
-            <Result show={modalShow} win={win} handleClose={() => setModalShow(false)} />
+            <Result show={modalShow} user={user} win={win} handleClose={() => setModalShow(false)} />
         </>
     )
 }

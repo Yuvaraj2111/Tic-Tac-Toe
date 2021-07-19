@@ -1,5 +1,5 @@
 import { Modal, Button } from 'react-bootstrap'
-const Result = ({ show, win, handleClose }) => {
+const Result = ({ show, win, handleClose, user }) => {
     return (
         <Modal
             show={show}
@@ -14,8 +14,9 @@ const Result = ({ show, win, handleClose }) => {
             </Modal.Header>
             <Modal.Body>
                 <h6 className="text-success">{
-                    win === "p1" ? "Player 1 won the game" : "Player 2 won the game"
-                }</h6>
+                    win === "p1" ? user.p1 : user.p2
+                } won the game</h6>
+
 
             </Modal.Body>
             <Modal.Footer>
