@@ -40,6 +40,10 @@ const Algo = (a) => {
         data['res'] = "p2"
         return data
     }
+    if (!(a[0].includes(null) || a[1].includes(null) || a[2].includes(null))) {
+        data['res'] = "draw"
+        return data
+    }
     return data
 }
 

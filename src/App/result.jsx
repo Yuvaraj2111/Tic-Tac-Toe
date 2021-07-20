@@ -13,9 +13,12 @@ const Result = ({ show, win, handleClose, user }) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h6 className="text-success">{
-                    win === "p1" ? user.p1 : user.p2
-                } won the game</h6>
+                {
+                    win === "draw" ? <h6 className="text-danger">Match tie</h6> :
+                        <h6 className="text-success">{
+                            win === "p1" ? user.p1 : user.p2
+                        } won the game</h6>
+                }
 
 
             </Modal.Body>

@@ -25,6 +25,10 @@ const App = () => {
                 setWin("p2")
                 setModalShow(true)
             }
+            if (res.res === "draw") {
+                setWin("draw")
+                setModalShow(true)
+            }
         }
         algocall()
     }, [mat])
